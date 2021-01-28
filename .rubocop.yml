@@ -1,0 +1,106 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  
+AllCops:
+  NewCops: enable
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 15
+
+Layout/LineLength:
+  Max: 120
+
+Style/WordArray:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Layout/EmptyLineAfterMultilineCondition:
+  Enabled: true
+
+# Checks for a line break before the first element in a multi-line array.
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+# Checks for a line break before the first element in a multi-line hash.
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+# Checks that each item in a multi-line array literal starts on a separate line.
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+# Check for a newline after the assignment operator in multi-line assignments.
+Layout/MultilineAssignmentLayout:
+  Enabled: true
+
+# Checks that each item in a multi-line hash literal starts on a separate line.
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+# Checks that each argument in a multi-line method call starts on a separate line.
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+# Checks unsafe usage of number conversion methods.
+Lint/NumberConversion:
+  Enabled: true
+
+# Enforces using `def self.method_name` or `class << self` to define class methods.
+Style/ClassMethodsDefinitions:
+  Enabled: true
+  EnforcedStyle: self_class
+
+# TODO: enable when ready to document!
+# Document classes and non-namespace modules.
+# Style/Documentation:
+#   Enabled: true
+#   Exclude:
+#     - 'spec/**/*'
+
+# TODO: enable when ready to document!
+# Checks for missing documentation comment for public methods.
+# Style/DocumentationMethod:
+#   Enabled: true
+#   RequireForNonPublicMethods: true
+
+# Avoid multi-line method signatures.
+Style/MultilineMethodSignature:
+  Enabled: true
+
+# Don't use option hashes when you can use keyword arguments.
+Style/OptionHash:
+  Enabled: true
+
+# Use return instead of return nil.
+Style/ReturnNil:
+  Enabled: true
+
+# Prefer `Object#__send__` or `Object#public_send` to `send`, as `send` may overlap with existing methods.
+Style/Send:
+  Enabled: true
+
+# Prefer symbols instead of strings as hash keys.
+Style/StringHashKeys:
+  Enabled: true
+
+# Checks for useless trailing commas in block arguments.
+Style/TrailingCommaInBlockArgs:
+  Enabled: true
+
+RSpec/NestedGroups:
+  Max: 6

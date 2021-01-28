@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+boundaries:
+  days_since_last_version:
+    min: 730
+    threshold: 90
+  days_since_last_commit:
+    min: 365
+    threshold: 2
+  open_issues_count:
+    max: 300
+  downloads_count:
+    max: 200_000_000
+  contributors_count:
+    max: 350
+  forks_count:
+    max: 15_000
+  stars_count:
+    max: 30_000
+results:
+  activity:
+    days_since_last_version: 3
+    days_since_last_commit: 5
+    contributors_count: 2
+    open_issues_count: 1
+  popularity:
+    downloads_count: 2
+    forks_count: 1
+    stars_count: 1
+  average:
+    activity: 1
+    popularity: 2
