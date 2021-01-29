@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 require "gems_bond/spy"
-require "#{Rails.root}/config/initializers/gems_bond" if defined?(Rails)
+
+begin
+  require "#{Rails.root}/config/initializers/gems_bond" if defined?(Rails)
+rescue LoadError
+  nil
+end
 
 namespace :gems_bond do
   desc "Investigates gems"
