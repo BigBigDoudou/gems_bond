@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["edouard.piron@gmail.com"]
 
   spec.summary       = "Inspect gems"
-  spec.description   = "Inspect gems"
+  spec.description   = "Inspect gems relying on data from RubyGems and GitHub"
   spec.homepage      = "https://github.com/BigBigDoudou/gems_bond"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4")
