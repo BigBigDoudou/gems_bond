@@ -49,12 +49,15 @@ module GemsBond
     end
 
     def version_color(gap)
+      return "secondary" if gap.nil?
       return "success" if gap.zero?
 
       gap < 3 ? "warning" : "danger"
     end
 
     def color(score)
+      return "secondary" if score.nil?
+
       if score < 0.33
         "danger"
       elsif score < 0.66
@@ -65,19 +68,19 @@ module GemsBond
     end
 
     def human_date(date)
-      return MISSING unless date
+      return MISSING if date.nil?
 
       date.strftime("%F")
     end
 
     def human_number(number)
-      return MISSING unless number
+      return MISSING if number.nil?
 
       number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1 ")
     end
 
     def human_score(score)
-      return MISSING unless score
+      return MISSING if score.nil?
 
       (score * 100).round
     end
