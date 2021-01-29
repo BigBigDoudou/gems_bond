@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gems_bond (1.0.3)
+    gems_bond (1.0.4)
       gems
       octokit (~> 4.0)
 
