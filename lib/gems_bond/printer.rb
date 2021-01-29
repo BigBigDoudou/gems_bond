@@ -6,6 +6,8 @@ require "fileutils"
 module GemsBond
   # Prints gems table
   class Printer
+    MISSING = "-"
+
     def initialize(gems)
       @gems = gems
     end
@@ -36,7 +38,14 @@ module GemsBond
     end
 
     def sorted_gems
-      @gems.sort_by(&:average_score)
+      # sort with putting gems without average_score at the end
+      @gems.sort do |a, b|
+        if a.average_score && b.average_score
+          a.average_score <=> b.average_score
+        else
+          a.average_score ? -1 : 1
+        end
+      end
     end
 
     def version_color(gap)
@@ -56,15 +65,21 @@ module GemsBond
     end
 
     def human_date(date)
-      date&.strftime("%F") || "-"
+      return MISSING unless date
+
+      date.strftime("%F")
     end
 
     def human_number(number)
-      number&.to_s&.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1 ") || "-"
+      return MISSING unless number
+
+      number.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1 ")
     end
 
     def human_score(score)
-      (score * 100).round || "-"
+      return MISSING unless score
+
+      (score * 100).round
     end
   end
 end
