@@ -1,0 +1,4 @@
+/public/example.html linguist-detectable=false
+/public/example.html linguist-vendor
+/public/example.html linguist-generated
+*.html linguist-language=Java
