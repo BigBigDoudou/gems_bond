@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "gems_bond/fetcher/ruby_gems"
-require "gems_bond/fetcher/github"
+require "gems_bond/fetchers/ruby_gems"
+require "gems_bond/fetchers/github"
 
 module GemsBond
   # Handles gem data
@@ -56,7 +56,7 @@ module GemsBond
     private
 
     # Fetches the given data with the given fetcher
-    # @param fetcher [GemsBond::Fetcher]
+    # @param fetcher [GemsBond::Fetchers]
     # @param key [String]
     # @return [Object, nil]
     def fetch(fetcher, key)
@@ -64,21 +64,21 @@ module GemsBond
     end
 
     # Returns a started RubyGems fetcher
-    # @return [GemsBond::Fetcher::RubyGems, nil]
+    # @return [GemsBond::Fetchers::RubyGems, nil]
     # @note #start is needed to ensure the fetcher works
     def ruby_gems_fetcher
       return @ruby_gems_fetcher if defined?(@ruby_gems_fetcher)
 
-      @ruby_gems_fetcher = GemsBond::Fetcher::RubyGems.new(name).start
+      @ruby_gems_fetcher = GemsBond::Fetchers::RubyGems.new(name).start
     end
 
     # Returns a started GitHub fetcher
-    # @return [GemsBond::Fetcher::Github, nil]
+    # @return [GemsBond::Fetchers::Github, nil]
     # @note #start is needed to ensure the fetcher works (especially the token)
     def github_fetcher
       return @github_fetcher if defined?(@github_fetcher)
 
-      @github_fetcher = github_url && GemsBond::Fetcher::Github.new(github_url).start
+      @github_fetcher = github_url && GemsBond::Fetchers::Github.new(github_url).start
     end
   end
 end

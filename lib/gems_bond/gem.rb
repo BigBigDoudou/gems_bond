@@ -49,9 +49,9 @@ module GemsBond
     # Returns GitHub url if exist
     # @return [String, nil]
     def github_url
-      return homepage if GemsBond::Fetcher::Github.valid_url?(homepage)
+      return homepage if GemsBond::Fetchers::Github.valid_url?(homepage)
 
-      source_code_uri if GemsBond::Fetcher::Github.valid_url?(source_code_uri)
+      source_code_uri if GemsBond::Fetchers::Github.valid_url?(source_code_uri)
     end
 
     private

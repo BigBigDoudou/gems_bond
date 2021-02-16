@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require "octokit"
+require "gems_bond/fetchers/fetcher"
 
 module GemsBond
-  module Fetcher
+  module Fetchers
     # Fetches data from GitHub
-    class Github
+    class Github < Fetcher
       # GitHub repository pattern, e.g.: "https://github.com/BigBigDoudou/gems_bond"
       REPOSITORY_REGEX = %r{https?://github.com/(?<repository>.*/.*)}.freeze
 
@@ -18,13 +19,14 @@ module GemsBond
 
       # Initializes an instance
       # @param url [String] URL of the GitHub repository
-      # @return [GemsBond::Fetcher::Github]
+      # @return [GemsBond::Fetchers::Github]
       def initialize(url)
+        super(url)
         @url = url
       end
 
       # Starts the service and returns self
-      # @return [GemsBond::Fetcher::Github, nil]
+      # @return [GemsBond::Fetchers::Github, nil]
       # @note rescue connection errors with nil
       def start
         parse_url

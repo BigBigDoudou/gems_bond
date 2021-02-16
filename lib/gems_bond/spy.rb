@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "gems_bond/gem"
-require "gems_bond/printer"
+require "gems_bond/printers/html"
 
 module GemsBond
   # Inspects gems and outputs the result
@@ -14,7 +14,7 @@ module GemsBond
     def call
       timer do
         fetch_gems_data
-        GemsBond::Printer.new(gems).call
+        GemsBond::Printers::HTML.new(gems).call
       end
     end
 

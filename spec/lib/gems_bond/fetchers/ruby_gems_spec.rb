@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "gems_bond/fetcher/ruby_gems"
+require "gems_bond/fetchers/ruby_gems"
 
-RSpec.describe GemsBond::Fetcher::RubyGems, api: true do
+RSpec.describe GemsBond::Fetchers::RubyGems, api: true do
   subject(:ruby_gems) { described_class.new("rails") }
 
   describe "#start" do

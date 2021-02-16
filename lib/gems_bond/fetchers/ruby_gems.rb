@@ -2,20 +2,22 @@
 
 require "gems"
 require "rubygems"
+require "gems_bond/fetchers/fetcher"
 
 module GemsBond
-  module Fetcher
+  module Fetchers
     # Fetches data from RubyGems
-    class RubyGems
+    class RubyGems < Fetcher
       # Initializes an instance
       # @param name [String] name of the gem
-      # @return [GemsBond::Fetcher::RubyGems]
+      # @return [GemsBond::Fetchers::RubyGems]
       def initialize(name)
+        super(name)
         @name = name
       end
 
       # Starts the service and returns self
-      # @return [GemsBond::Fetcher::RubyGems, nil]
+      # @return [GemsBond::Fetchers::RubyGems, nil]
       # @note rescue connection errors with nil
       def start
         # ensure gem exists (otherwise it raises Gems error)
