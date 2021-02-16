@@ -2,6 +2,7 @@
 
 require "gems_bond/gem"
 require "gems_bond/printers/html"
+require "gems_bond/printers/csv"
 
 module GemsBond
   # Inspects gems and outputs the result
@@ -15,6 +16,7 @@ module GemsBond
       timer do
         fetch_gems_data
         GemsBond::Printers::HTML.new(gems).call
+        GemsBond::Printers::CSV.new(gems).call
       end
     end
 

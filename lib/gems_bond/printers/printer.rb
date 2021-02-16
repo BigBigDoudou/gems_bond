@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require "erb"
 require "fileutils"
 
 module GemsBond
   module Printers
     # Prints HTML file
     class Printer
-      MISSING = "-"
+      DIRECTORY_PATH = "gems_bond"
 
       # Initializes an instance
       # @param gems [Array<GemsBond::Gem>]
@@ -16,13 +15,30 @@ module GemsBond
         @gems = gems
       end
 
-      # Prints data
+      # Manages print
       # @return [void]
       def call
-        raise NotImplementedError, "Subclasses must implement a call method."
+        format = self.class.name.split("::").last
+        puts "\nPreparing data for printing results into #{format} file..."
+        create_directory
+        print
+        puts "Open file gems_bond/spy.#{format.downcase} to display the results."
       end
 
       private
+
+      # Prints data into a file
+      # @return [void]
+      def print
+        raise NotImplementedError, "Subclasses must implement a call method."
+      end
+
+      # Creates the "gems_bond" directory if absent
+      def create_directory
+        return if File.directory?(DIRECTORY_PATH)
+
+        FileUtils.mkdir_p(DIRECTORY_PATH)
+      end
 
       # Returns gems sorted by the average_score
       # @return [Array<GemsBond::Gem>]

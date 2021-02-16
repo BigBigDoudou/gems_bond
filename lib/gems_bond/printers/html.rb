@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "erb"
-require "fileutils"
 require "gems_bond/printers/printer"
 
 module GemsBond
@@ -10,24 +9,14 @@ module GemsBond
     class HTML < Printer
       MISSING = "-"
 
-      # Prints data into an HTML file
-      # @return [void]
-      def call
-        puts "\nPreparing data for printing results..."
-        create_directory
-        File.open("gems_bond/spy.html", "w") do |file|
-          file.puts content
-        end
-        puts "Open file gems_bond/spy.html to display the results."
-      end
-
       private
 
-      # Creates the "gems_bond" directory if absent
-      def create_directory
-        return if File.directory?("gems_bond")
-
-        FileUtils.mkdir_p("gems_bond")
+      # Prints data into a file
+      # @return [void]
+      def print
+        File.open("#{DIRECTORY_PATH}/spy.html", "w") do |file|
+          file.puts content
+        end
       end
 
       # Returns the ERB template
