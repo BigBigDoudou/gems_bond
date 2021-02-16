@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "gems_bond/fetcher/github"
+require "gems_bond/fetchers/github"
 
-RSpec.describe GemsBond::Fetcher::Github, api: true do
+RSpec.describe GemsBond::Fetchers::Github, api: true do
   subject(:github) { described_class.new("https://github.com/rails/rails") }
 
   let(:with_valid_token) { GemsBond.configure { |config| config.github_token = ENV["GITHUB_TOKEN"] } }
