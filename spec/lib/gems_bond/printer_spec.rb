@@ -2,4 +2,4 @@
 
 require "gems_bond/printer"
 
-RSpec.describe GemsBond::Printer do; end # rubocop:disable Rspec/EmptyExampleGroup, Style/BlockDelimiters
+RSpec.describe GemsBond::Printer do; end # rubocop:disable RSpec/EmptyExampleGroup, Style/BlockDelimiters
