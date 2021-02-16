@@ -12,7 +12,6 @@ module GemsBond
       source_code_uri
       versions
       last_version
-      last_version_date
       days_since_last_version
     ].freeze
 
