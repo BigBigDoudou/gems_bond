@@ -43,6 +43,9 @@ module GemsBond
       end
     end
 
+    # Fetches all gem's data
+    # @param verbose [Boolean] should gem's name be stdout?
+    # @return [void]
     def fetch_all(verbose: false)
       KEYS.each do |key|
         __send__(key)
@@ -52,16 +55,26 @@ module GemsBond
 
     private
 
+    # Fetches the given data with the given fetcher
+    # @param fetcher [GemsBond::Fetcher]
+    # @param key [String]
+    # @return [Object, nil]
     def fetch(fetcher, key)
       fetcher&.public_send(key)
     end
 
+    # Returns a started RubyGems fetcher
+    # @return [GemsBond::Fetcher::RubyGems, nil]
+    # @note #start is needed to ensure the fetcher works
     def ruby_gems_fetcher
       return @ruby_gems_fetcher if defined?(@ruby_gems_fetcher)
 
       @ruby_gems_fetcher = GemsBond::Fetcher::RubyGems.new(name).start
     end
 
+    # Returns a started GitHub fetcher
+    # @return [GemsBond::Fetcher::Github, nil]
+    # @note #start is needed to ensure the fetcher works (especially the token)
     def github_fetcher
       return @github_fetcher if defined?(@github_fetcher)
 

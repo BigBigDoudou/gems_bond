@@ -67,16 +67,16 @@ Style/ClassMethodsDefinitions:
 
 # TODO: enable when ready to document!
 # Document classes and non-namespace modules.
-# Style/Documentation:
-#   Enabled: true
-#   Exclude:
-#     - 'spec/**/*'
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
 
 # TODO: enable when ready to document!
 # Checks for missing documentation comment for public methods.
-# Style/DocumentationMethod:
-#   Enabled: true
-#   RequireForNonPublicMethods: true
+Style/DocumentationMethod:
+  Enabled: true
+  RequireForNonPublicMethods: true
 
 # Avoid multi-line method signatures.
 Style/MultilineMethodSignature:
