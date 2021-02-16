@@ -2,4 +2,4 @@
 
 require "gems_bond/spy"
 
-RSpec.describe GemsBond::Spy do; end # rubocop:disable Rspec/EmptyExampleGroup, Style/BlockDelimiters
+RSpec.describe GemsBond::Spy do; end # rubocop:disable RSpec/EmptyExampleGroup, Style/BlockDelimiters

@@ -29,7 +29,7 @@ RSpec.describe GemsBond::Gem do
     allow(to_spec).to receive(:version).and_return("0.4.2")
     expect(gem.version).to eq "0.4.2"
 
-    # rubocop:disable Rspec/AnyInstance
+    # rubocop:disable RSpec/AnyInstance
 
     # data from RubyGems API
 
@@ -62,6 +62,6 @@ RSpec.describe GemsBond::Gem do
 
     allow_any_instance_of(GemsBond::Fetcher::Github).to receive(:open_issues_count).and_return(45)
     expect(gem.open_issues_count).to eq 45
-    # rubocop:enable Rspec/AnyInstance
+    # rubocop:enable RSpec/AnyInstance
   end
 end

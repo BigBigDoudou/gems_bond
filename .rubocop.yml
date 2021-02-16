@@ -104,3 +104,6 @@ Style/TrailingCommaInBlockArgs:
 
 RSpec/NestedGroups:
   Max: 6
+
+RSpec/ExampleLength:
+  Enabled: false
