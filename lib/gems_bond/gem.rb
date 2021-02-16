@@ -25,7 +25,7 @@ module GemsBond
     # Returns description
     # @return [String] (memoized)
     def description
-      memoize(__method__) { @dependency.description }
+      memoize(__method__) { @dependency.to_spec.description }
     end
 
     # Returns used version
