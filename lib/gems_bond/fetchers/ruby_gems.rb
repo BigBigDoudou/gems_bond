@@ -16,15 +16,21 @@ module GemsBond
         @name = name
       end
 
-      # Starts the service and returns self
-      # @return [GemsBond::Fetchers::RubyGems, nil]
+      # Starts the service
+      # @return [Boolean]
       # @note rescue connection errors with nil
       def start
+        super
         # ensure gem exists (otherwise it raises Gems error)
         @info = Gems.info(@name)
-        self
       rescue Gems::NotFound
-        nil
+        stop
+      end
+
+      # Returns gem description
+      # @return [String]
+      def info
+        @info["info"]
       end
 
       # Returns number of downloads
@@ -36,7 +42,7 @@ module GemsBond
       # Returns source code URI
       # @return [String]
       def source_code_uri
-        @info["metadata"]["source_code_uri"]
+        @info["source_code_uri"]
       end
 
       # Returns versions data (number, date and if it is a prerelease)
@@ -69,7 +75,7 @@ module GemsBond
       def days_since_last_version
         return unless last_version_date
 
-        Date.today - last_version_date
+        Integer(Date.today - last_version_date)
       end
     end
   end

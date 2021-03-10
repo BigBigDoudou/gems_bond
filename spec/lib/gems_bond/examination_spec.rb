@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require "gems_bond/examination_helper"
+require "gems_bond/examination"
+require "gems_bond/gem"
 
-RSpec.describe GemsBond::ExaminationHelper do
+RSpec.describe GemsBond::Examination do
   let(:gem) { GemsBond::Gem.new(nil) }
 
   before do

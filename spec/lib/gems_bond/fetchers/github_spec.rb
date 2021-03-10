@@ -9,38 +9,45 @@ RSpec.describe GemsBond::Fetchers::Github, api: true do
 
   describe "#start" do
     context "when homepage does not match the GitHub repository URL pattern" do
-      it "returns nil" do
+      it "does not start" do
         invalid_homepage = "foobar"
-        expect(described_class.new(invalid_homepage).start).to be_nil
+        fetcher = described_class.new(invalid_homepage)
+        fetcher.start
+        expect(fetcher.started?).to eq false
       end
     end
 
     context "when GitHub token is missing or invalid" do
-      it "returns nil" do
+      it "does not start" do
         GemsBond.configure { |config| config.github_token = "not-a-token" }
-        expect(described_class.new("https://github.com/rails/rails").start).to be_nil
+        fetcher = described_class.new("https://github.com/rails/rails")
+        fetcher.start
+        expect(fetcher.started?).to eq false
       end
     end
 
     context "when repository does not exist or is private" do
-      it "returns nil" do
+      it "does not start" do
         with_valid_token
         invalid_repository = "https://github.com/i-do-not/exist"
-        expect(described_class.new(invalid_repository).start).to be_nil
+        fetcher = described_class.new(invalid_repository)
+        fetcher.start
+        expect(fetcher.started?).to eq false
       end
     end
 
     context "when all inputs are valid" do
-      it "returns self" do
+      it "starts" do
         with_valid_token
-        expect(github.start).to eq github
+        github.start
+        expect(github.started?).to eq true
       end
     end
   end
 
-  it "handle GitHub data", :aggregate_failures do
+  it "handles GitHub data", :aggregate_failures do
     with_valid_token
-    fetcher = github.start
+    fetcher = github.tap(&:start)
     expect(fetcher.forks_count).to be > 0
     expect(fetcher.stars_count).to be > 0
     expect(fetcher.contributors_count).to be > 0

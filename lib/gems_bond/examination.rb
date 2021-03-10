@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
+require "yaml"
+
 module GemsBond
   # Examines gem sanity
-  module ExaminationHelper
+  module Examination
     SCORES = YAML.safe_load(File.read(File.join(File.dirname(__FILE__), "scores.yml")))
     BOUNDARIES = SCORES["boundaries"]
     RESULTS = SCORES["results"]
-
-    # Returns gap between installed and last released version, in days
-    # @return [Integer, nil] (memoized)
-    def version_gap
-      memoize(:version_gap) { calculate_version_gap }
-    end
 
     # @!method activity_score
     # Returns activity score
@@ -112,18 +108,6 @@ module GemsBond
       return if weight.zero?
 
       acc / weight
-    end
-
-    # Returns gap between installed and last released version, in days
-    # @return [Integer, nil]
-    def calculate_version_gap
-      return unless version && versions
-
-      index = versions.index { |v| v[:number] == version }
-      return unless index
-
-      gap = versions[0..index].count { |v| !v[:prerelease] } - 1
-      gap.positive? ? gap : 0
     end
   end
 end

@@ -25,17 +25,17 @@ module GemsBond
         @url = url
       end
 
-      # Starts the service and returns self
-      # @return [GemsBond::Fetchers::Github, nil]
+      # Starts the service
+      # @return [Boolean]
       # @note rescue connection errors with nil
       def start
+        super
         parse_url
         login
         # ensure repository exists (otherwise it raises Octokit error)
         set_repository
-        self
       rescue Octokit::Unauthorized, Octokit::InvalidRepository, Octokit::NotFound
-        nil
+        stop
       end
 
       # Returns number of forks
@@ -86,7 +86,7 @@ module GemsBond
       def days_since_last_commit
         return unless last_commit_date
 
-        Date.today - last_commit_date
+        Integer(Date.today - last_commit_date)
       end
 
       # Returns size of the lib directory
@@ -117,6 +117,8 @@ module GemsBond
       # Logs with client
       # @return [String] GitHub'username
       def login
+        return unless token
+
         @login ||= client.user.login
       end
 

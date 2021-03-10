@@ -4,6 +4,8 @@ require "octokit"
 
 module GemsBond
   module Fetchers
+    class NotStartedError < StandardError; end
+
     # Fetches data
     class Fetcher
       # Initializes an instance
@@ -14,7 +16,18 @@ module GemsBond
       # Starts the service and returns self
       # @note rescue connection errors with nil
       def start
-        raise NotImplementedError, "Subclasses must implement a start method that starts the service and returns it."
+        @started = true
+      end
+
+      # Starts the service and returns self
+      # @note rescue connection errors with nil
+      def stop
+        @started = false
+      end
+
+      # Is the service started?
+      def started?
+        @started
       end
     end
   end
