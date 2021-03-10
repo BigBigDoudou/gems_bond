@@ -7,21 +7,25 @@ RSpec.describe GemsBond::Fetchers::RubyGems, api: true do
 
   describe "#start" do
     context "when name does not match a gem on RubyGems" do
-      it "returns nil" do
+      it "does not start" do
         invalid_name = "i-do-not-exist-on-ruby-gems"
-        expect(described_class.new(invalid_name).start).to be_nil
+        fetcher = described_class.new(invalid_name)
+        fetcher.start
+        expect(fetcher.started?).to eq false
       end
     end
 
     context "when name matches a gem on RubyGems" do
-      it "returns self" do
-        expect(ruby_gems.start).to eq ruby_gems
+      it "starts" do
+        ruby_gems.start
+        expect(ruby_gems.started?).to eq true
       end
     end
   end
 
-  it "handle RubyGems data", :aggregate_failures do
-    expect(ruby_gems.start.downloads_count).to be > 0
-    expect(ruby_gems.start.versions).not_to be_empty
+  it "handles RubyGems data", :aggregate_failures do
+    fetcher = ruby_gems.tap(&:start)
+    expect(fetcher.downloads_count).to be > 0
+    expect(fetcher.versions).not_to be_empty
   end
 end

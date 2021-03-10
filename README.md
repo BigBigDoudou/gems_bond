@@ -20,6 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
+### Spy one
+
+Get information about a given gem. The result is display in the terminal.
+
+```bash
+bundle exec rake gems_bond:spy:one rails
+```
+
+This will output:
+
+```
+-------- RAILS INFO --------
+
+Ruby on Rails is a full-stack web framework optimized for programmer happiness and sustainable productivity. It encourages beautiful code by favoring convention over configuration.
+
+- url: https://github.com/rails/rails/tree/v6.1.3
+- version: 5.2.0 (27 behind 6.1.3)
+- counts: 270 222 380 downloads | 19 185 forks | 47 738 stars | 375 contributors
+- activity: 21 days since last version | 0 days since last commit
+```
+
+You can spy any gem by its name, even if it is not in your project dependencies.
+
+### Spy all
+
+Get information and scoring for all of the current project gems.
+
 First, you need to get a GithHub token since the gem fetches data from the GitHub API.
 
 When logged in on GitHub, go in https://github.com/settings/tokens and generate a new token.
@@ -39,24 +66,26 @@ end
 Then run the task:
 
 ```bash
-bundle exec rake gems_bond:spy
+bundle exec rake gems_bond:spy:all
 ```
 
 You can provide the token at this moment if it is not set in configuration or if you want to override it:
 
 ```bash
-bundle exec rake gems_bond:spy GITHUB_TOKEN=my_github_readonly_token
+bundle exec rake gems_bond:spy:all GITHUB_TOKEN=my_github_readonly_token
 ```
 
-The output can then be read in `gems_bond/spy.html`.
+The output can then be read in `gems_bond/spy.csv` and `gems_bond/spy.html`.
 
 ![example](public/example.png)
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rspec` to run the tests, and `rspec --tag ~@api` to skip tests calling RubyGems and GitHub APIs. Run You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Add a github token in the `.env.test` file (`GITHUB_TOKEN=<token>`) then run `rspec`, or run `rspec --tag ~@api` to skip tests calling RubyGems and GitHub APIs.
+
+You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 ## Contributing
 

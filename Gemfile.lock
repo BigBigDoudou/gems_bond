@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gems_bond (1.0.4)
+    gems_bond (1.1.0)
       gems
       octokit (~> 4.0)
 
@@ -98,4 +98,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.2.4
+   2.2.11

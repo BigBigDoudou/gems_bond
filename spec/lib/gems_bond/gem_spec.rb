@@ -18,10 +18,10 @@ RSpec.describe GemsBond::Gem do
     allow(dependency).to receive(:name).and_return("foo")
     expect(gem.name).to eq "foo"
 
-    allow(dependency).to receive(:description).and_return("Lorem ipsum")
-    expect(gem.description).to eq "Lorem ipsum"
-
     allow(dependency).to receive(:to_spec).and_return(to_spec)
+
+    allow(to_spec).to receive(:description).and_return("Lorem ipsum")
+    expect(gem.description).to eq "Lorem ipsum"
 
     allow(to_spec).to receive(:homepage).and_return("https://github.com/bar/foo")
     expect(gem.homepage).to eq "https://github.com/bar/foo"
